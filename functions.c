@@ -19,7 +19,9 @@
 #include <ublox.h>
 #include "files/version.h"
 #include <uart/uart.h>
+#include <util/uart.h>
 #include <libmid_isp/snx_mid_isp.h>
+#include <json_cmd.h>
 
 /*
   get uptime in seconds
@@ -377,24 +379,24 @@ static void format_storage(struct template_state *tmpl, const char *name, const 
  */
 static const char *validate_ssid_password(const char *ssid,
                                           const char *password,
-                                          enc_auth_t auth_mode,
+                                          enum ENC_AUTH_TYPE auth_mode,
                                           int channel)
 {
     if (channel < 1 || channel > 14) {
         return "Invalid WiFi channel";
     }
     switch (auth_mode) {
-    case AUTH_NONE:
+    case OPEN_MODE:
         // always accept
         return NULL;
-    case AUTH_WEP:
+    case WEP_MODE:
         // must be 5 char password
         if (strlen(password) != 5) {
             return "WEP password must be exactly 5 characters long";
         }
         return NULL;
-    case AUTH_WPA:
-    case AUTH_WPA2:
+    case WPA_MODE:
+    case WPA2_MODE:
         // must be at least 8 char password
         if (strlen(password) < 8) {
             return "WEP password must be at least 8 characters long";
@@ -1122,6 +1124,8 @@ static void get_ambient_light(struct template_state *tmpl, const char *name, con
     sock_printf(tmpl->sock, "%d", v);
 }
 
+#if 0
+// disabled as no longer available
 /*
   get ISP offset
  */
@@ -1145,6 +1149,8 @@ static void set_isp_offset(struct template_state *tmpl, const char *name, const 
         }
     }
 }
+#endif
+
 #endif // SYSTEM_FREERTOS
 
 void functions_init(struct template_state *tmpl)
@@ -1178,8 +1184,11 @@ void functions_init(struct template_state *tmpl)
     tmpl->put(tmpl, "get_serial_number", "", get_serial_number);
     tmpl->put(tmpl, "get_config_vars", "", get_config_vars);
     tmpl->put(tmpl, "get_ambient_light", "", get_ambient_light);
+#if 0
+    // disabled as no longer available
     tmpl->put(tmpl, "get_isp_offset", "", get_isp_offset);
     tmpl->put(tmpl, "set_isp_offset", "", set_isp_offset);
+#endif
 #endif // SYSTEM_FREERTOS
     tmpl->put(tmpl, "format_storage", "", format_storage);
     tmpl->put(tmpl, "factory_reset", "", factory_reset);
