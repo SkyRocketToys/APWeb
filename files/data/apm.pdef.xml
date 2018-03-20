@@ -8863,6 +8863,9 @@
 <field name="Range">0 1</field>
 <field name="Increment">0.01</field>
 </param>
+<param humanName="Profile ID" name="TMODE_PROFILE_ID" documentation="This sets the activated profile, 0 means no profile activated" user="Advanced">
+<field name="Range">0 4</field>
+</param>
 <param humanName="Load test multiplier" name="TMODE_LOAD_MUL" documentation="This scales the load test output, as a value between 0 and 1" user="Advanced">
 <field name="Range">0 1</field>
 <field name="Increment">0.01</field>
@@ -8877,33 +8880,681 @@
 <value code="2">LogReplay2</value>
 </values>
 </param>
-<param humanName="GPS button action" name="TMODE_GPS_BTN" documentation="This is the action taken for the GPS button" user="Standard">
+</parameters>
+<parameters name="TMODE_P1_">
+<param humanName="Acro Roll and Pitch P gain" name="TMODE_P1_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Yaw P gain" name="TMODE_P1_A_YAW_P" documentation="Converts pilot yaw input into a desired rate of rotation in ACRO, Stabilize and SPORT modes.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Balance Roll" name="TMODE_P1_A_BAL_RL" documentation="rate at which roll angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Balance Pitch" name="TMODE_P1_A_BAL_PI" documentation="rate at which pitch angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Trainer" name="TMODE_P1_A_TRNR" documentation="Type of trainer used in acro mode" user="Advanced">
 <values>
-<value code="0">None</value>
-<value code="1">TakePhoto</value>
-<value code="2">ToggleVideo</value>
-<value code="3">ModeAcro</value>
-<value code="4">ModeAltHold</value>
-<value code="5">ModeAuto</value>
-<value code="6">ModeLoiter</value>
-<value code="7">ModeRTL</value>
-<value code="8">ModeCircle</value>
-<value code="9">ModeLand</value>
-<value code="10">ModeDrift</value>
-<value code="11">ModeSport</value>
-<value code="12">ModeAutoTune</value>
-<value code="13">ModePosHold</value>
-<value code="14">ModeBrake</value>
-<value code="15">ModeThrow</value>
-<value code="16">Flip</value>
-<value code="17">ModeStabilize</value>
-<value code="18">Disarm</value>
-<value code="19">ToggleMode</value>
-<value code="20">Arm-Land-RTL</value>
-<value code="21">ToggleSimpleMode</value>
-<value code="22">ToggleSuperSimpleMode</value>
-<value code="23">MotorLoadTest</value>
+<value code="0">Disabled</value>
+<value code="1">Leveling</value>
+<value code="2">Leveling and Limited</value>
 </values>
+</param>
+<param humanName="Acro Roll/Pitch Expo" name="TMODE_P1_A_RP_XPO" documentation="Acro roll/pitch Expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Yaw Expo" name="TMODE_P1_A_Y_XPO" documentation="Acro yaw expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Thr Mid" name="TMODE_P1_A_THR_M" documentation="Acro Throttle Mid" user="Advanced">
+<field name="Range">0 1</field>
+</param>
+<param humanName="Angle Max" name="TMODE_P1_ANG_MAX" documentation="Maximum lean angle in all flight modes" user="Advanced">
+<field name="Range">1000 8000</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
+<param humanName="Acceleration Max for Yaw" name="TMODE_P1_XL_Y_MX" documentation="Maximum acceleration in yaw axis" user="Advanced">
+<field name="Range">0 72000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 9000">VerySlow</value>
+<value code=" 18000">Slow</value>
+<value code=" 36000">Medium</value>
+<value code=" 54000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Roll" name="TMODE_P1_XL_R_MX" documentation="Maximum acceleration in roll axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Pitch" name="TMODE_P1_XL_P_MX" documentation="Maximum acceleration in pitch axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Pilot maximum vertical speed ascending" name="TMODE_P1_PLT_V_UP" documentation="The maximum vertical ascending velocity the pilot may request in cm/s" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="RC Feel Roll/Pitch" name="TMODE_P1_FEEL_RP" documentation="RC feel for roll/pitch which controls vehicle response to user input with 0 being extremely soft and 100 being crisp" user="Standard">
+<field name="Range">0 100</field>
+<values>
+<value code="0">Very Soft</value>
+<value code=" 25">Soft</value>
+<value code=" 50">Medium</value>
+<value code=" 75">Crisp</value>
+<value code=" 100">Very Crisp</value>
+</values>
+<field name="Increment">10</field>
+</param>
+<param humanName="Waypoint Horizontal Speed Target" name="TMODE_P1_WP_SPD" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain horizontally during a WP mission" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Radius" name="TMODE_P1_WP_RAD" documentation="Defines the distance from a waypoint, that when crossed indicates the wp has been hit." user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">1</field>
+<field name="Units">cm</field>
+<field name="UnitText">centimeters</field>
+</param>
+<param humanName="Waypoint Climb Speed Target" name="TMODE_P1_WP_V_UP" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while climbing during a WP mission" user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Descent Speed Target" name="TMODE_P1_WP_V_DN" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while descending during a WP mission" user="Standard">
+<field name="Range">10 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Loiter Horizontal Maximum Speed" name="TMODE_P1_LTR_SPD" documentation="Defines the maximum speed in cm/s which the aircraft will travel horizontally while in loiter mode" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Acceleration " name="TMODE_P1_WP_XL" documentation="Defines the horizontal acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Waypoint Vertical Acceleration" name="TMODE_P1_WP_XL_Z" documentation="Defines the vertical acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter maximum jerk" name="TMODE_P1_LTR_JRK" documentation="Loiter maximum jerk in cm/s/s/s" user="Advanced">
+<field name="Range">500 5000</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s/s</field>
+<field name="UnitText">centimeters per cubic second</field>
+</param>
+<param humanName="Loiter maximum acceleration" name="TMODE_P1_LTR_MXA" documentation="Loiter maximum acceleration in cm/s/s.  Higher values cause the copter to accelerate and stop more quickly." user="Advanced">
+<field name="Range">100 981</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter minimum acceleration" name="TMODE_P1_LTR_MNA" documentation="Loiter minimum acceleration in cm/s/s. Higher values stop the copter more quickly when the stick is centered, but cause a larger jerk when the copter stops." user="Advanced">
+<field name="Range">25 250</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+</parameters>
+<parameters name="TMODE_P2_">
+<param humanName="Acro Roll and Pitch P gain" name="TMODE_P2_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Yaw P gain" name="TMODE_P2_A_YAW_P" documentation="Converts pilot yaw input into a desired rate of rotation in ACRO, Stabilize and SPORT modes.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Balance Roll" name="TMODE_P2_A_BAL_RL" documentation="rate at which roll angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Balance Pitch" name="TMODE_P2_A_BAL_PI" documentation="rate at which pitch angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Trainer" name="TMODE_P2_A_TRNR" documentation="Type of trainer used in acro mode" user="Advanced">
+<values>
+<value code="0">Disabled</value>
+<value code="1">Leveling</value>
+<value code="2">Leveling and Limited</value>
+</values>
+</param>
+<param humanName="Acro Roll/Pitch Expo" name="TMODE_P2_A_RP_XPO" documentation="Acro roll/pitch Expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Yaw Expo" name="TMODE_P2_A_Y_XPO" documentation="Acro yaw expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Thr Mid" name="TMODE_P2_A_THR_M" documentation="Acro Throttle Mid" user="Advanced">
+<field name="Range">0 1</field>
+</param>
+<param humanName="Angle Max" name="TMODE_P2_ANG_MAX" documentation="Maximum lean angle in all flight modes" user="Advanced">
+<field name="Range">1000 8000</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
+<param humanName="Acceleration Max for Yaw" name="TMODE_P2_XL_Y_MX" documentation="Maximum acceleration in yaw axis" user="Advanced">
+<field name="Range">0 72000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 9000">VerySlow</value>
+<value code=" 18000">Slow</value>
+<value code=" 36000">Medium</value>
+<value code=" 54000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Roll" name="TMODE_P2_XL_R_MX" documentation="Maximum acceleration in roll axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Pitch" name="TMODE_P2_XL_P_MX" documentation="Maximum acceleration in pitch axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Pilot maximum vertical speed ascending" name="TMODE_P2_PLT_V_UP" documentation="The maximum vertical ascending velocity the pilot may request in cm/s" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="RC Feel Roll/Pitch" name="TMODE_P2_FEEL_RP" documentation="RC feel for roll/pitch which controls vehicle response to user input with 0 being extremely soft and 100 being crisp" user="Standard">
+<field name="Range">0 100</field>
+<values>
+<value code="0">Very Soft</value>
+<value code=" 25">Soft</value>
+<value code=" 50">Medium</value>
+<value code=" 75">Crisp</value>
+<value code=" 100">Very Crisp</value>
+</values>
+<field name="Increment">10</field>
+</param>
+<param humanName="Waypoint Horizontal Speed Target" name="TMODE_P2_WP_SPD" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain horizontally during a WP mission" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Radius" name="TMODE_P2_WP_RAD" documentation="Defines the distance from a waypoint, that when crossed indicates the wp has been hit." user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">1</field>
+<field name="Units">cm</field>
+<field name="UnitText">centimeters</field>
+</param>
+<param humanName="Waypoint Climb Speed Target" name="TMODE_P2_WP_V_UP" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while climbing during a WP mission" user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Descent Speed Target" name="TMODE_P2_WP_V_DN" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while descending during a WP mission" user="Standard">
+<field name="Range">10 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Loiter Horizontal Maximum Speed" name="TMODE_P2_LTR_SPD" documentation="Defines the maximum speed in cm/s which the aircraft will travel horizontally while in loiter mode" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Acceleration " name="TMODE_P2_WP_XL" documentation="Defines the horizontal acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Waypoint Vertical Acceleration" name="TMODE_P2_WP_XL_Z" documentation="Defines the vertical acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter maximum jerk" name="TMODE_P2_LTR_JRK" documentation="Loiter maximum jerk in cm/s/s/s" user="Advanced">
+<field name="Range">500 5000</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s/s</field>
+<field name="UnitText">centimeters per cubic second</field>
+</param>
+<param humanName="Loiter maximum acceleration" name="TMODE_P2_LTR_MXA" documentation="Loiter maximum acceleration in cm/s/s.  Higher values cause the copter to accelerate and stop more quickly." user="Advanced">
+<field name="Range">100 981</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter minimum acceleration" name="TMODE_P2_LTR_MNA" documentation="Loiter minimum acceleration in cm/s/s. Higher values stop the copter more quickly when the stick is centered, but cause a larger jerk when the copter stops." user="Advanced">
+<field name="Range">25 250</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+</parameters>
+<parameters name="TMODE_P3_">
+<param humanName="Acro Roll and Pitch P gain" name="TMODE_P3_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Yaw P gain" name="TMODE_P3_A_YAW_P" documentation="Converts pilot yaw input into a desired rate of rotation in ACRO, Stabilize and SPORT modes.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Balance Roll" name="TMODE_P3_A_BAL_RL" documentation="rate at which roll angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Balance Pitch" name="TMODE_P3_A_BAL_PI" documentation="rate at which pitch angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Trainer" name="TMODE_P3_A_TRNR" documentation="Type of trainer used in acro mode" user="Advanced">
+<values>
+<value code="0">Disabled</value>
+<value code="1">Leveling</value>
+<value code="2">Leveling and Limited</value>
+</values>
+</param>
+<param humanName="Acro Roll/Pitch Expo" name="TMODE_P3_A_RP_XPO" documentation="Acro roll/pitch Expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Yaw Expo" name="TMODE_P3_A_Y_XPO" documentation="Acro yaw expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Thr Mid" name="TMODE_P3_A_THR_M" documentation="Acro Throttle Mid" user="Advanced">
+<field name="Range">0 1</field>
+</param>
+<param humanName="Angle Max" name="TMODE_P3_ANG_MAX" documentation="Maximum lean angle in all flight modes" user="Advanced">
+<field name="Range">1000 8000</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
+<param humanName="Acceleration Max for Yaw" name="TMODE_P3_XL_Y_MX" documentation="Maximum acceleration in yaw axis" user="Advanced">
+<field name="Range">0 72000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 9000">VerySlow</value>
+<value code=" 18000">Slow</value>
+<value code=" 36000">Medium</value>
+<value code=" 54000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Roll" name="TMODE_P3_XL_R_MX" documentation="Maximum acceleration in roll axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Pitch" name="TMODE_P3_XL_P_MX" documentation="Maximum acceleration in pitch axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Pilot maximum vertical speed ascending" name="TMODE_P3_PLT_V_UP" documentation="The maximum vertical ascending velocity the pilot may request in cm/s" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="RC Feel Roll/Pitch" name="TMODE_P3_FEEL_RP" documentation="RC feel for roll/pitch which controls vehicle response to user input with 0 being extremely soft and 100 being crisp" user="Standard">
+<field name="Range">0 100</field>
+<values>
+<value code="0">Very Soft</value>
+<value code=" 25">Soft</value>
+<value code=" 50">Medium</value>
+<value code=" 75">Crisp</value>
+<value code=" 100">Very Crisp</value>
+</values>
+<field name="Increment">10</field>
+</param>
+<param humanName="Waypoint Horizontal Speed Target" name="TMODE_P3_WP_SPD" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain horizontally during a WP mission" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Radius" name="TMODE_P3_WP_RAD" documentation="Defines the distance from a waypoint, that when crossed indicates the wp has been hit." user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">1</field>
+<field name="Units">cm</field>
+<field name="UnitText">centimeters</field>
+</param>
+<param humanName="Waypoint Climb Speed Target" name="TMODE_P3_WP_V_UP" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while climbing during a WP mission" user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Descent Speed Target" name="TMODE_P3_WP_V_DN" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while descending during a WP mission" user="Standard">
+<field name="Range">10 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Loiter Horizontal Maximum Speed" name="TMODE_P3_LTR_SPD" documentation="Defines the maximum speed in cm/s which the aircraft will travel horizontally while in loiter mode" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Acceleration " name="TMODE_P3_WP_XL" documentation="Defines the horizontal acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Waypoint Vertical Acceleration" name="TMODE_P3_WP_XL_Z" documentation="Defines the vertical acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter maximum jerk" name="TMODE_P3_LTR_JRK" documentation="Loiter maximum jerk in cm/s/s/s" user="Advanced">
+<field name="Range">500 5000</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s/s</field>
+<field name="UnitText">centimeters per cubic second</field>
+</param>
+<param humanName="Loiter maximum acceleration" name="TMODE_P3_LTR_MXA" documentation="Loiter maximum acceleration in cm/s/s.  Higher values cause the copter to accelerate and stop more quickly." user="Advanced">
+<field name="Range">100 981</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter minimum acceleration" name="TMODE_P3_LTR_MNA" documentation="Loiter minimum acceleration in cm/s/s. Higher values stop the copter more quickly when the stick is centered, but cause a larger jerk when the copter stops." user="Advanced">
+<field name="Range">25 250</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+</parameters>
+<parameters name="TMODE_P4_">
+<param humanName="Acro Roll and Pitch P gain" name="TMODE_P4_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Yaw P gain" name="TMODE_P4_A_YAW_P" documentation="Converts pilot yaw input into a desired rate of rotation in ACRO, Stabilize and SPORT modes.  Higher values mean faster rate of rotation." user="Standard">
+<field name="Range">1 10</field>
+</param>
+<param humanName="Acro Balance Roll" name="TMODE_P4_A_BAL_RL" documentation="rate at which roll angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Balance Pitch" name="TMODE_P4_A_BAL_PI" documentation="rate at which pitch angle returns to level in acro mode.  A higher value causes the vehicle to return to level faster." user="Advanced">
+<field name="Range">0 3</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="Acro Trainer" name="TMODE_P4_A_TRNR" documentation="Type of trainer used in acro mode" user="Advanced">
+<values>
+<value code="0">Disabled</value>
+<value code="1">Leveling</value>
+<value code="2">Leveling and Limited</value>
+</values>
+</param>
+<param humanName="Acro Roll/Pitch Expo" name="TMODE_P4_A_RP_XPO" documentation="Acro roll/pitch Expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Yaw Expo" name="TMODE_P4_A_Y_XPO" documentation="Acro yaw expo to allow faster rotation when stick at edges" user="Advanced">
+<field name="Range">-0.5 1.0</field>
+<values>
+<value code="0">Disabled</value>
+<value code="0.1">Very Low</value>
+<value code="0.2">Low</value>
+<value code="0.3">Medium</value>
+<value code="0.4">High</value>
+<value code="0.5">Very High</value>
+</values>
+</param>
+<param humanName="Acro Thr Mid" name="TMODE_P4_A_THR_M" documentation="Acro Throttle Mid" user="Advanced">
+<field name="Range">0 1</field>
+</param>
+<param humanName="Angle Max" name="TMODE_P4_ANG_MAX" documentation="Maximum lean angle in all flight modes" user="Advanced">
+<field name="Range">1000 8000</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
+<param humanName="Acceleration Max for Yaw" name="TMODE_P4_XL_Y_MX" documentation="Maximum acceleration in yaw axis" user="Advanced">
+<field name="Range">0 72000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 9000">VerySlow</value>
+<value code=" 18000">Slow</value>
+<value code=" 36000">Medium</value>
+<value code=" 54000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Roll" name="TMODE_P4_XL_R_MX" documentation="Maximum acceleration in roll axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Acceleration Max for Pitch" name="TMODE_P4_XL_P_MX" documentation="Maximum acceleration in pitch axis" user="Advanced">
+<field name="Range">0 180000</field>
+<values>
+<value code="0">Disabled</value>
+<value code=" 30000">VerySlow</value>
+<value code=" 72000">Slow</value>
+<value code=" 108000">Medium</value>
+<value code=" 162000">Fast</value>
+</values>
+<field name="Increment">1000</field>
+<field name="Units">cdeg/s/s</field>
+<field name="UnitText">centidegrees per square second</field>
+</param>
+<param humanName="Pilot maximum vertical speed ascending" name="TMODE_P4_PLT_V_UP" documentation="The maximum vertical ascending velocity the pilot may request in cm/s" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="RC Feel Roll/Pitch" name="TMODE_P4_FEEL_RP" documentation="RC feel for roll/pitch which controls vehicle response to user input with 0 being extremely soft and 100 being crisp" user="Standard">
+<field name="Range">0 100</field>
+<values>
+<value code="0">Very Soft</value>
+<value code=" 25">Soft</value>
+<value code=" 50">Medium</value>
+<value code=" 75">Crisp</value>
+<value code=" 100">Very Crisp</value>
+</values>
+<field name="Increment">10</field>
+</param>
+<param humanName="Waypoint Horizontal Speed Target" name="TMODE_P4_WP_SPD" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain horizontally during a WP mission" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Radius" name="TMODE_P4_WP_RAD" documentation="Defines the distance from a waypoint, that when crossed indicates the wp has been hit." user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">1</field>
+<field name="Units">cm</field>
+<field name="UnitText">centimeters</field>
+</param>
+<param humanName="Waypoint Climb Speed Target" name="TMODE_P4_WP_V_UP" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while climbing during a WP mission" user="Standard">
+<field name="Range">10 1000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Descent Speed Target" name="TMODE_P4_WP_V_DN" documentation="Defines the speed in cm/s which the aircraft will attempt to maintain while descending during a WP mission" user="Standard">
+<field name="Range">10 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Loiter Horizontal Maximum Speed" name="TMODE_P4_LTR_SPD" documentation="Defines the maximum speed in cm/s which the aircraft will travel horizontally while in loiter mode" user="Standard">
+<field name="Range">20 2000</field>
+<field name="Increment">50</field>
+<field name="Units">cm/s</field>
+<field name="UnitText">centimeters per second</field>
+</param>
+<param humanName="Waypoint Acceleration " name="TMODE_P4_WP_XL" documentation="Defines the horizontal acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Waypoint Vertical Acceleration" name="TMODE_P4_WP_XL_Z" documentation="Defines the vertical acceleration in cm/s/s used during missions" user="Standard">
+<field name="Range">50 500</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter maximum jerk" name="TMODE_P4_LTR_JRK" documentation="Loiter maximum jerk in cm/s/s/s" user="Advanced">
+<field name="Range">500 5000</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s/s</field>
+<field name="UnitText">centimeters per cubic second</field>
+</param>
+<param humanName="Loiter maximum acceleration" name="TMODE_P4_LTR_MXA" documentation="Loiter maximum acceleration in cm/s/s.  Higher values cause the copter to accelerate and stop more quickly." user="Advanced">
+<field name="Range">100 981</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Loiter minimum acceleration" name="TMODE_P4_LTR_MNA" documentation="Loiter minimum acceleration in cm/s/s. Higher values stop the copter more quickly when the stick is centered, but cause a larger jerk when the copter stops." user="Advanced">
+<field name="Range">25 250</field>
+<field name="Increment">1</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
 </param>
 </parameters>
 <parameters name="VISO">
