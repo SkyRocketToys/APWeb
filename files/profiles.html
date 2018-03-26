@@ -177,7 +177,7 @@
             button.id = String(i);
             button.className = "tablinks";
             button.innerHTML = "Profile " + button.id;
-            button.addEventListener("click", function(){openTab(event, this.id);}); 
+            button.addEventListener("click", function(evt){openTab(evt, this.id);}); 
             profile.appendChild(button);
         }
     }
