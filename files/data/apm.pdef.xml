@@ -8948,6 +8948,16 @@
 <field name="Range">0 400</field>
 <field name="Increment">1</field>
 </param>
+<param humanName="Obstruction Throttle Threshold" name="TMODE_OB_THRTHS" documentation="Throttle beneath which no climb-rate checking should be done" user="Advanced">
+<field name="Range">0 1</field>
+<field name="Increment">0.01</field>
+</param>
+<param humanName="Obstruction Climb Threshold" name="TMODE_OB_CLMBTHS" documentation="Minimum climb rate expected at @PREFIX@_OB_THRTHS.  This MUST take into account normal outside effects such as wind on the vehicle." user="Advanced">
+<field name="Range">0 10</field>
+<field name="Increment">0.1</field>
+<field name="Units">m/s</field>
+<field name="UnitText">meters per second</field>
+</param>
 </parameters>
 <parameters name="TMODE_P1_">
 <param humanName="Acro Roll and Pitch P gain" name="TMODE_P1_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
