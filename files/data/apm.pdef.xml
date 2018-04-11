@@ -3304,6 +3304,32 @@
 <field name="UnitText">degrees per second</field>
 </param>
 </parameters>
+<parameters name="FLIP_">
+<param humanName="Flip ramp time" name="FLIP_RAMP_MS" documentation="Ramp time in milliseconds at the start of a flip. This allows you to adjust for height loss in flip" user="Advanced">
+<field name="Range">100 2000</field>
+<field name="Increment">10</field>
+<field name="Units">ms</field>
+<field name="UnitText">milliseconds</field>
+</param>
+<param humanName="Flip ramp angle in centidegrees" name="FLIP_RAMP_CD" documentation="The ramp angle is how far in the opposite direction of the flip that we start rotating to give a flip that doesn't change position" user="Advanced">
+<field name="Range">100 2000</field>
+<field name="Increment">10</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
+<param humanName="Flip rotation rate" name="FLIP_ROT_RATE" documentation="The rotation rate in degrees/second for a flip" user="Advanced">
+<field name="Range">100 3000</field>
+<field name="Increment">1</field>
+<field name="Units">deg/s</field>
+<field name="UnitText">degrees per second</field>
+</param>
+<param humanName="Flip maximum roll acceleration rate" name="FLIP_ACCEL_MAX" documentation="The rotation acceleration rate in degrees/second/second for a flip. This overrides the ATC_ACCEL_R_MAX and ATC_ACCEL_P_MAX during a flip. A value of zero means not to override existing values" user="Advanced">
+<field name="Range">0 10000</field>
+<field name="Increment">10</field>
+<field name="Units">deg/s/s</field>
+<field name="UnitText">degrees per square second</field>
+</param>
+</parameters>
 <parameters name="FLOW">
 <param humanName="Optical flow enable/disable" name="FLOW_ENABLE" documentation="Setting this to Enabled(1) will enable optical flow. Setting this to Disabled(0) will disable optical flow" user="Standard">
 <values>
