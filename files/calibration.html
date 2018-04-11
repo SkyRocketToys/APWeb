@@ -797,7 +797,7 @@ function combined_check_parameters() {
         // all changed, continue with test
         combined_param_wait_start = 0;
         combined_finished_cal_stage();
-    } else if (get_utc_sec() - combined_param_wait_start > 3) {
+    } else if (get_utc_sec() - combined_param_wait_start > 12) {
         combined_param_wait_start = 0;
         append_message_color("combined_message", "red", "ERR Calibration timeout");
     }
