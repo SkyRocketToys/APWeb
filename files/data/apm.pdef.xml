@@ -14,6 +14,9 @@
 <value code="10">Copter</value>
 <value code="20">Rover</value>
 <value code="40">ArduSub</value>
+<value code="100">SkyViper-GPS</value>
+<value code="101">SkyViper-Streaming</value>
+<value code="102">SkyViper-Stunt</value>
 </values>
 </param>
 <param humanName="MAVLink system ID of this vehicle" name="ArduCopter:SYSID_THISMAV" documentation="Allows setting an individual MAVLink system id for this vehicle to distinguish it from others on the same network" user="Advanced">
