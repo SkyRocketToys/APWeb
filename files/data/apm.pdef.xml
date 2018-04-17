@@ -3329,6 +3329,12 @@
 <field name="Units">deg/s/s</field>
 <field name="UnitText">degrees per square second</field>
 </param>
+<param humanName="Flip end angle in centidegrees" name="FLIP_STOP_CD" documentation="The end angle is the angular difference from the starting angle that the flip goes back to normal levelling" user="Advanced">
+<field name="Range">100 2000</field>
+<field name="Increment">10</field>
+<field name="Units">cdeg</field>
+<field name="UnitText">centidegrees</field>
+</param>
 </parameters>
 <parameters name="FLOW">
 <param humanName="Optical flow enable/disable" name="FLOW_ENABLE" documentation="Setting this to Enabled(1) will enable optical flow. Setting this to Disabled(0) will disable optical flow" user="Standard">
@@ -8983,6 +8989,18 @@
 <field name="Increment">0.1</field>
 <field name="Units">m/s</field>
 <field name="UnitText">meters per second</field>
+</param>
+<param humanName="Takeoff min acceleration" name="TMODE_TOFF_ACC" documentation="Minimum vertical acceleration during takeoff, to overcome ground effect" user="Advanced">
+<field name="Range">0 400</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Land max acceleration" name="TMODE_LAND_ACC" documentation="Maximum vertical acceleration during land, to overcome ground effect" user="Advanced">
+<field name="Range">0 400</field>
+<field name="Increment">10</field>
+<field name="Units">cm/s/s</field>
+<field name="UnitText">centimeters per square second</field>
 </param>
 </parameters>
 <parameters name="TMODE_P1_">

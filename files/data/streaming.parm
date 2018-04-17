@@ -1,0 +1,5 @@
+# use SYSID_SW_TYPE to identify model
+SYSID_SW_TYPE 101
+
+# extra parameters for streaming
+TMODE_ACTION1 2

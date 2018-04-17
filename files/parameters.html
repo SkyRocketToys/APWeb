@@ -52,7 +52,7 @@ on the button below.
         'GPS:GPS_',
         'Profile1:TMODE_P1_',
         'Profile2:TMODE_P2_',
-        'All:',
+        'All:*',
     ];
     var prefix_hash = {};
 
@@ -74,6 +74,7 @@ on the button below.
     var param_defaults = {};
     var plist;
     var byname = {};
+    var loaded_frame_defaults = false;
 
     function fill_parameters(json) {
         var table = document.getElementById("param_table");
@@ -102,10 +103,16 @@ on the button below.
 
         var n = plist.length;
 
+        var category = document.getElementById("param_category").value;
+        
         for (var i=0; i<n; i++) {
+            var rowdata = plist[i];
+            byname[rowdata.name] = rowdata.value;
+            if (rowdata.name == 'SYSID_SW_TYPE' && prefix_hash[category] != '*') {
+                continue;
+            }
             var rownum = table.rows.length;
             var row = table.insertRow(table.rows.length);
-            var rowdata = plist[i];
             row.insertCell(0).innerHTML = rowdata.name;
             var c1 = row.insertCell(1);
             c1.innerHTML = '<input type="text" class="paramvalue" id="input:' + rowdata.name + '" value="' + rowdata.value + '" onchange="change_param(\'' + rowdata.name + '\',this.value);">';
@@ -114,15 +121,40 @@ on the button below.
             var c3 = row.insertCell(3);
             var c4 = row.insertCell(4);
             var c5 = row.insertCell(5);
-            byname[rowdata.name] = rowdata.value;
         }
         fill_param_docs();
         search_change();
+        load_frame_defaults();
+    }
+
+    // load frame specific parameter defaults using SYSID_SW_TYPE
+    function load_frame_defaults() {
+        if (loaded_frame_defaults) {
+            return;
+        }
+        if (byname['SYSID_SW_TYPE']) {
+            var sw_type = byname['SYSID_SW_TYPE'];
+            console.log('SYSID_SW_TYPE=' + sw_type);
+            if (sw_type == 100) {
+                ajax_get_callback("data/GPS.parm", defaults_callback);                
+            }
+            if (sw_type == 101) {
+                ajax_get_callback("data/streaming.parm", defaults_callback);                
+            }
+            if (sw_type == 102) {
+                ajax_get_callback("data/stunt.parm", defaults_callback);                
+            }
+            loaded_frame_defaults = true;
+        }
     }
 
     function refresh() {
         var category = document.getElementById("param_category").value;
-        command_send("get_param_list(" + prefix_hash[category] + ")", { "onload" : fill_parameters });
+        var fetch_list = prefix_hash[category];
+        if (fetch_list != '*') {
+            fetch_list = fetch_list + ',SYSID_SW_TYPE';
+        }
+        command_send("get_param_list(" + fetch_list + "", { "onload" : fill_parameters });
     }
 
     function change_param(name, value) {
