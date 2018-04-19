@@ -3332,12 +3332,6 @@
 <field name="Units">deg/s/s</field>
 <field name="UnitText">degrees per square second</field>
 </param>
-<param humanName="Flip end angle in centidegrees" name="FLIP_STOP_CD" documentation="The end angle is the angular difference from the starting angle that the flip goes back to normal levelling" user="Advanced">
-<field name="Range">100 2000</field>
-<field name="Increment">10</field>
-<field name="Units">cdeg</field>
-<field name="UnitText">centidegrees</field>
-</param>
 </parameters>
 <parameters name="FLOW">
 <param humanName="Optical flow enable/disable" name="FLOW_ENABLE" documentation="Setting this to Enabled(1) will enable optical flow. Setting this to Disabled(0) will disable optical flow" user="Standard">
@@ -8926,20 +8920,6 @@
 <param humanName="Profile ID" name="TMODE_PROFILE_ID" documentation="This sets the activated profile, 0 means no profile activated" user="Advanced">
 <field name="Range">0 4</field>
 </param>
-<param humanName="Load test multiplier" name="TMODE_LOAD_MUL" documentation="This scales the load test output, as a value between 0 and 1" user="Advanced">
-<field name="Range">0 1</field>
-<field name="Increment">0.01</field>
-</param>
-<param humanName="Load test filter" name="TMODE_LOAD_FILT" documentation="This filters the load test output. A value of 1 means no filter. 2 means values are repeated once. 3 means values are repeated 3 times, etc" user="Advanced">
-<field name="Range">0 100</field>
-</param>
-<param humanName="Load test type" name="TMODE_LOAD_TYPE" documentation="This sets the type of load test" user="Advanced">
-<values>
-<value code="0">ConstantThrust</value>
-<value code="1">LogReplay1</value>
-<value code="2">LogReplay2</value>
-</values>
-</param>
 <param humanName="GPS button action" name="TMODE_GPS_BTN" documentation="This is the action taken for the GPS button" user="Standard">
 <values>
 <value code="0">None</value>
@@ -9004,6 +8984,20 @@
 <field name="Increment">10</field>
 <field name="Units">cm/s/s</field>
 <field name="UnitText">centimeters per square second</field>
+</param>
+<param humanName="Load test multiplier" name="TMODE_LOAD_MUL" documentation="This scales the load test output, as a value between 0 and 1" user="Advanced">
+<field name="Range">0 1</field>
+<field name="Increment">0.01</field>
+</param>
+<param humanName="Load test filter" name="TMODE_LOAD_FILT" documentation="This filters the load test output. A value of 1 means no filter. 2 means values are repeated once. 3 means values are repeated 3 times, etc" user="Advanced">
+<field name="Range">0 100</field>
+</param>
+<param humanName="Load test type" name="TMODE_LOAD_TYPE" documentation="This sets the type of load test" user="Advanced">
+<values>
+<value code="0">ConstantThrust</value>
+<value code="1">LogReplay1</value>
+<value code="2">LogReplay2</value>
+</values>
 </param>
 </parameters>
 <parameters name="TMODE_P1_">
