@@ -235,6 +235,7 @@ your transmitter with the left button pressed.
     <tr><td>GyroRoll</td><td><div name="MAVLINK:OPTICAL_FLOW:flow_comp_m_x"></div></td></tr>
     <tr><td>FlowPitch</td><td><div name="MAVLINK:OPTICAL_FLOW:flow_rate_y"></div></td></tr>
     <tr><td>GyroPitch</td><td><div name="MAVLINK:OPTICAL_FLOW:flow_comp_m_y"></div></td></tr>
+    <tr><td>Quality</td><td><div name="MAVLINK:OPTICAL_FLOW:quality"></div></td></tr>
     </table>
     </td>
     <td>
@@ -242,6 +243,8 @@ your transmitter with the left button pressed.
     <canvas id="flow_x_canvas" width="400" height="200"></canvas><p>
     Pitch&nbsp;<b style="color:green">Gyro</b> and&nbsp;<b style="color:red">Flow</b><br>
     <canvas id="flow_y_canvas" width="400" height="200"></canvas><p>
+    Quality</b><br>
+    <canvas id="flow_qual_canvas" width="400" height="200"></canvas><p>
     </td>
     </tr>
     </table>
@@ -449,6 +452,7 @@ create_chart("gps_canvas",        ["MAVLINK:GPS_RAW_INT:vel_acc","MAVLINK:GPS_RA
 create_chart("tx_canvas",         ["MAVLINK:RC_CHANNELS:chan1_raw","MAVLINK:RC_CHANNELS:chan2_raw","MAVLINK:RC_CHANNELS:chan3_raw","MAVLINK:RC_CHANNELS:chan4_raw"]);
 create_chart("flow_x_canvas",     ["MAVLINK:OPTICAL_FLOW:flow_rate_x","MAVLINK:OPTICAL_FLOW:flow_comp_m_x"]);
 create_chart("flow_y_canvas",     ["MAVLINK:OPTICAL_FLOW:flow_rate_y","MAVLINK:OPTICAL_FLOW:flow_comp_m_y"]);
+create_chart("flow_qual_canvas",  ["MAVLINK:OPTICAL_FLOW:quality"]);
 
 var have_3d_fix = false;
 
