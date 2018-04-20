@@ -8645,6 +8645,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode action 2" name="TMODE_ACTION2" documentation="This is the action taken for the right action button" user="Standard">
@@ -8676,6 +8677,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode action 3" name="TMODE_ACTION3" documentation="This is the action taken for the power button" user="Standard">
@@ -8707,6 +8709,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode action 4" name="TMODE_ACTION4" documentation="This is the action taken for the left action button while the mode button is pressed" user="Standard">
@@ -8738,6 +8741,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode action 5" name="TMODE_ACTION5" documentation="This is the action taken for the right action button while the mode button is pressed" user="Standard">
@@ -8769,6 +8773,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode action 6" name="TMODE_ACTION6" documentation="This is the action taken for the power button while the mode button is pressed" user="Standard">
@@ -8800,6 +8805,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode mode button action" name="TMODE_MODE_BTN" documentation="This is the action taken for the mode button being pressed" user="Standard">
@@ -8831,6 +8837,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode mode button long action" name="TMODE_MODE_LONG" documentation="This is the action taken for a long press of the mode button" user="Standard">
@@ -8862,6 +8869,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Stick auto trim limit" name="TMODE_TRIM_AUTO" documentation="This is the amount of automatic stick trim that can be applied when disarmed with sticks not moving. It is a PWM limit value away from 1500" user="Standard">
@@ -8896,6 +8904,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Tmode flags" name="TMODE_FLAGS" documentation="Bitmask of flags to change the behaviour of tmode. DisarmOnLowThrottle means to disarm if throttle is held down for 1 second when landed. ArmOnHighThrottle means to arm if throttle is above 80% for 1 second. UpgradeToLoiter means to allow takeoff in LOITER mode by switching to ALT_HOLD, then auto-upgrading to LOITER once GPS is available. RTLStickCancel means that on large stick inputs in RTL mode that LOITER mode is engaged" user="Standard">
@@ -8949,6 +8958,7 @@
 <value code="24">ModeFlowHold</value>
 <value code="25">ToggleProfile</value>
 <value code="26">LaunchLand</value>
+<value code="27">ToggleLEDs</value>
 </values>
 </param>
 <param humanName="Takeoff time in seconds" name="TMODE_TOFF_TIME" documentation="This sets the amount of time a takeoff takes in seconds" user="Advanced">
@@ -8998,6 +9008,14 @@
 <value code="1">LogReplay1</value>
 <value code="2">LogReplay2</value>
 </values>
+</param>
+<param humanName="Obstruction Throttle climb time" name="TMODE_OB_CLBMS" documentation="Time for climb obstruction test" user="Advanced">
+<field name="Range">0 5000</field>
+<field name="Increment">10</field>
+</param>
+<param humanName="Obstruction Throttle climb altitude" name="TMODE_OB_CLBALT" documentation="Height delta for climb obstruction test" user="Advanced">
+<field name="Range">0 10</field>
+<field name="Increment">0.1</field>
 </param>
 </parameters>
 <parameters name="TMODE_P1_">

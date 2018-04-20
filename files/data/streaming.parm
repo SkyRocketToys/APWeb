@@ -210,6 +210,7 @@ ATC_RAT_YAW_FILT       3.5
 ATC_SLEW_YAW        3250
 ATC_THR_MIX_MAN        4
 ATC_THR_MIX_MAX        0.9
+ATC_THR_MIX_MIN        0.5
 
 # tuning
 ACRO_RP_EXPO           0.3
@@ -313,6 +314,7 @@ FLIP_ACCEL_MAX  3000
 
 BRD_RADIO_TYPE 3
 BRD_RADIO_ABLVL 15
+BRD_RADIO_TXPOW 7
 
 # DCM does better for flips on this frame
 AHRS_EKF_TYPE 0
@@ -348,3 +350,4 @@ SYSID_SW_TYPE 101
 
 # extra parameters for streaming
 TMODE_ACTION1 2
+
