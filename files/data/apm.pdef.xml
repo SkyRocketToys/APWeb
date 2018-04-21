@@ -9017,6 +9017,22 @@
 <field name="Range">0 10</field>
 <field name="Increment">0.1</field>
 </param>
+<param humanName="Slowdown height for descent" name="TMODE_SLOW_HGT" documentation="Height at which we start slowing down vertical descent" user="Advanced">
+<field name="Range">0 10</field>
+<field name="Increment">0.1</field>
+<field name="Units">m</field>
+<field name="UnitText">meters</field>
+</param>
+<param humanName="Slowdown height ramp start" name="TMODE_SLOW_RAMP" documentation="Height above TMODE_SLOW_HGT that we start to slow descent rate" user="Advanced">
+<field name="Range">0 10</field>
+<field name="Increment">0.1</field>
+<field name="Units">m</field>
+<field name="UnitText">meters</field>
+</param>
+<param humanName="Slowdown height throttle" name="TMODE_SLOW_THR" documentation="Throttle limit at TMODE_SLOW_HGT height. 500 corresponds with hover throttle. 0 corresponds to full descent rate" user="Advanced">
+<field name="Range">0 500</field>
+<field name="Increment">10</field>
+</param>
 </parameters>
 <parameters name="TMODE_P1_">
 <param humanName="Acro Roll and Pitch P gain" name="TMODE_P1_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
