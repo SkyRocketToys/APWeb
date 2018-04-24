@@ -2942,6 +2942,12 @@
 <value code="1">Tables</value>
 </values>
 </param>
+<param humanName="Maximum INS height deviation allowed" name="EK2_INS_HGT_CHK" documentation="When the INS height deviation from the measurement exceeds this value, the EKF will declare the INS solution as bad and reset the height to the baro measurement and the vertical velocity to the baro height derivative. Only used when operating without GPS vertical velocity." user="Advanced">
+<field name="Range">0.5 5.0</field>
+<field name="Increment">0.5</field>
+<field name="Units">m</field>
+<field name="UnitText">meters</field>
+</param>
 </parameters>
 <parameters name="EK3_">
 <param humanName="Enable EKF3" name="EK3_ENABLE" documentation="This enables EKF3. Enabling EKF3 only makes the maths run, it does not mean it will be used for flight control. To use it for flight control set AHRS_EKF_TYPE=3. A reboot or restart will need to be performed after changing the value of EK3_ENABLE for it to take effect." user="Advanced">
@@ -3305,6 +3311,11 @@
 <field name="Range">1 30</field>
 <field name="Units">deg/s</field>
 <field name="UnitText">degrees per second</field>
+</param>
+<param humanName="FlowHold height offset" name="FHLD_HGT_OFS" documentation="This height offset is added to height estimate to account for barometric disturbance from motors" user="Standard">
+<field name="Range">-2 2</field>
+<field name="Units">m</field>
+<field name="UnitText">meters</field>
 </param>
 </parameters>
 <parameters name="FLIP_">
@@ -9032,6 +9043,28 @@
 <param humanName="Slowdown height throttle" name="TMODE_SLOW_THR" documentation="Throttle limit at TMODE_SLOW_HGT height. 500 corresponds with hover throttle. 0 corresponds to full descent rate" user="Advanced">
 <field name="Range">0 500</field>
 <field name="Increment">10</field>
+</param>
+<param humanName="INAV time constant" name="TMODE_INAV_TC_Z" documentation="Set INAV baro time constant. Lower values trust the barometer more for height" user="Advanced">
+<field name="Range">0.1 10</field>
+<field name="Increment">0.05</field>
+</param>
+<param humanName="INAV time constant, K1" name="TMODE_INAV_K1" documentation="First level constant for inav state estimator" user="Advanced">
+<field name="Range">0.1 10</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="INAV time constant, K2" name="TMODE_INAV_K2" documentation="Second level constant for inav state estimator" user="Advanced">
+<field name="Range">0.1 10</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="INAV time constant, K3" name="TMODE_INAV_K3" documentation="Third level constant for inav state estimator" user="Advanced">
+<field name="Range">0.1 10</field>
+<field name="Increment">0.1</field>
+</param>
+<param humanName="INAV enable" name="TMODE_INAV_EN" documentation="Enable INAV system for height control" user="Advanced">
+<values>
+<value code="0">Disabled</value>
+<value code="1">Enabled</value>
+</values>
 </param>
 </parameters>
 <parameters name="TMODE_P1_">
