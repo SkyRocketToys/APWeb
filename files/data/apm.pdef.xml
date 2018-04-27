@@ -8972,7 +8972,7 @@
 <value code="27">ToggleLEDs</value>
 </values>
 </param>
-<param humanName="Takeoff time in seconds" name="TMODE_TOFF_TIME" documentation="This sets the amount of time a takeoff takes in seconds" user="Advanced">
+<param humanName="Takeoff time in seconds" name="TMODE_TOFF_TIME" documentation="This sets the mininum amount of time a takeoff takes in seconds" user="Advanced">
 <field name="Range">0 5</field>
 <field name="Increment">0.1</field>
 </param>
@@ -9065,6 +9065,10 @@
 <value code="0">Disabled</value>
 <value code="1">Enabled</value>
 </values>
+</param>
+<param humanName="Takeoff height in meters" name="TMODE_TOFF_HGT" documentation="This sets the minimum height change for takeoff completion" user="Advanced">
+<field name="Range">0 5</field>
+<field name="Increment">0.01</field>
 </param>
 </parameters>
 <parameters name="TMODE_P1_">
