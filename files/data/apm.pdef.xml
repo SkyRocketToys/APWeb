@@ -9078,6 +9078,10 @@
 <field name="Range">0 5</field>
 <field name="Increment">0.01</field>
 </param>
+<param humanName="Critical battery voltage" name="TMODE_CRIT_VOLT" documentation="If battery gets below this voltage then throttle up will no longer cancel land" user="Advanced">
+<field name="Range">0 15</field>
+<field name="Increment">0.01</field>
+</param>
 </parameters>
 <parameters name="TMODE_P1_">
 <param humanName="Acro Roll and Pitch P gain" name="TMODE_P1_A_RP_P" documentation="Converts pilot roll and pitch into a desired rate of rotation in ACRO and SPORT mode.  Higher values mean faster rate of rotation." user="Standard">
