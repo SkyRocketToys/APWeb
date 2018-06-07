@@ -3325,6 +3325,11 @@
 <param humanName="FlowHold land flow spike threshold" name="FHLD_LAND_FSPK" documentation="This is the threshold for flow rate spike for landing detection. The flow rate must spike above this limit at the same time as the baro spikes above the baro limit to detect landing" user="Standard">
 <field name="Range">0 2</field>
 </param>
+<param humanName="FlowHold height offset limit" name="FHLD_HGT_ESTLIM" documentation="This is a limit on the difference between barometric height and the flow height estimate" user="Standard">
+<field name="Range">0 20</field>
+<field name="Units">m</field>
+<field name="UnitText">meters</field>
+</param>
 </parameters>
 <parameters name="FLIP_">
 <param humanName="Flip ramp time" name="FLIP_RAMP_MS" documentation="Ramp time in milliseconds at the start of a flip. This allows you to adjust for height loss in flip" user="Advanced">
